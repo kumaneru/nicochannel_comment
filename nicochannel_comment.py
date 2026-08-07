@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from pkgutil import extend_path
 import sys
 import os
 import re
@@ -129,9 +128,7 @@ try :
 except:
     print('ERROR! / Could not get video information. Video URL may be incorrect.')
     print(f'https://api.{parse.netloc}/fc/video_pages/' + vid)
-    exit()
-    video_data_req = requests.get(f'https://nfc-api.{parse.netloc}/fc/video_pages/' + vid, headers=headers)
-    video_data_req_response = video_data_req.raise_for_status()
+    sys.exit(1)
 
 video_data = json.loads(video_data_req.text)
 comment_group_id = str(video_data.get('data', {}).get('video_page', {}).get('video_comment_setting', {}).get('comment_group_id'))
